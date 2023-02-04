@@ -13,5 +13,11 @@ export class AccountService {
         socket.on('Bucket Remove', (bucketName: string) => {
             // TODO
         });
+
+        socket.on('Get Bucket List', () => {
+            if(socket.data.user){
+                socket.emit('Bucket List', socket.data.user.bucketList);
+            }
+        });
     }
 }

@@ -6,6 +6,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { AppRoutingModule } from './modules/app-routing.module';
+<<<<<<< HEAD
+=======
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { BucketListComponent } from './components/bucket-list/bucket-list.component';
+import { ObjectiveComponent } from './components/bucket-list/objective/objective.component';
+>>>>>>> f4c8bf93b02cc022ff197d77fe07b26579a94648
 import { AppMaterialModule } from './modules/material.module';
 
 @NgModule({
@@ -13,7 +19,10 @@ import { AppMaterialModule } from './modules/material.module';
     AppComponent,
     ChatComponent,
     MainPageComponent,
-    AccountPageComponent
+    AccountPageComponent,
+    NavigationComponent,
+    BucketListComponent,
+    ObjectiveComponent
   ],
   imports: [
     AppMaterialModule,
