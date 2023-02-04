@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketManagerService } from './services/socket-manager.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'client';
+
+  constructor(socketManagerService : SocketManagerService){
+    console.log('TEST|');
+  }
 }
