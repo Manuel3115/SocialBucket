@@ -19,6 +19,7 @@ app.get('/', (req: any, res: any) => {
 
 io.on('connection', (socket: any) => {
   chatSocketService.handleChatSockets(socket);
+  authService.handleAuthSockets(socket);
   console.log('a user connected');
 });
 
