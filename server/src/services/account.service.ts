@@ -19,5 +19,10 @@ export class AccountService {
                 socket.emit('Bucket List', socket.data.user.bucketList);
             }
         });
+
+        socket.on('Get Users Bucket Item', (bucketName: string) => {
+            // TODO Connect to DB
+            socket.emit('Users Bucket Item', null);
+        });
     }
 }
