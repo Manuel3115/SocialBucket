@@ -26,4 +26,9 @@ export class AccountSocketService {
         this.socket.once('Bucket List', callback);
         this.socket.emit('Get Bucket List');
     }
+
+    getUsersBucketItem(bucketItem : string, callback: (userList: string[]) => void){
+        this.socket.once('Users Bucket Item', callback);
+        this.socket.emit('Get Users Bucket Item', bucketItem);
+    }
 }
