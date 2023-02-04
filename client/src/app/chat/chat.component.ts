@@ -11,27 +11,29 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 export class ChatComponent implements OnInit {
 
   constructor() { }
-
-  channelsList: string[] = ["chat", "chien"];
-  messageHistory : string[] = ["message"];
-  userList : string[]=[];
-
-
+  channelList: Channel[] = [];
+  tabSelected:number = 0;
 
   ngOnInit(): void {
+    this.channelList.push({name:"chat", messageHistory:[], userList:[]})
+    this.channelList.push({name:"chien", messageHistory:[], userList:[]})
     for(var i:number =0; i < 20; i++){
-      this.messageHistory.push("message");
-      this.messageHistory.push("message");
-      this.userList.push("user");
+      this.channelList[0].messageHistory.push("message");
+      this.channelList[0].userList.push("user");
     }
 
   }
 
   updateTab(index:number):void {
-    this.messageHistory=[];
-    var selectedIndex = index;
-    console.log(selectedIndex);
+    this.tabSelected = index;
+    console.log(this.tabSelected);
   }
 
+}
+
+interface Channel{
+  name :string
+  messageHistory: string[];
+  userList: string[]
 }
 

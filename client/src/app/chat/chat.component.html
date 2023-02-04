@@ -1,13 +1,13 @@
 <mat-tab-group id="chatChannels" (selectedIndexChange)="updateTab($event)">
-    <mat-tab *ngFor="let channel of channelsList" [label]="channel">
+    <mat-tab *ngFor="let channel of channelList" [label]="channel.name">
         <div id="chatBox">
             <mat-list>
-                <mat-list-item *ngFor="let message of messageHistory">
+                <mat-list-item *ngFor="let message of channel.messageHistory">
                     {{ message }}
                 </mat-list-item>
             </mat-list>
             <mat-list>
-                <mat-list-item *ngFor="let user of userList">
+                <mat-list-item *ngFor="let user of channel.userList">
                     {{ user }}
                 </mat-list-item>
             </mat-list>
