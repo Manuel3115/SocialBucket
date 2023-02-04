@@ -46,9 +46,8 @@ export class AccountService {
             }
         });
 
-        socket.on('Get Users Bucket Item', (bucketName: string) => {
-            // TODO Connect to DB
-            socket.emit('Users Bucket Item', null);
+        socket.on('Get Users Bucket Item', async (bucketName: string) => {
+            socket.emit('Users Bucket Item', await this.databaseService.getUsernamesWithObjective(bucketName, false));
         });
     }
 }
