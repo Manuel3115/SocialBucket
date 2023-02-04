@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ChatComponent } from './chat/chat.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
@@ -16,6 +16,7 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 @NgModule({
   declarations: [
     AppComponent,
+    ChatComponent,
     MainPageComponent,
     AccountPageComponent,
     NavigationComponent,
