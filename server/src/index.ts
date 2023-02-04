@@ -1,3 +1,4 @@
+import { BucketItem } from "./interface/bucket_item";
 import { AuthentificationService } from "./services/authentification.service";
 import { ChatSocketService } from "./services/chat.service";
 import { DatabaseService } from "./services/database.service";
@@ -13,6 +14,8 @@ const databaseService = new DatabaseService();
 const chatSocketService = new ChatSocketService();
 const authService = new AuthentificationService(databaseService);
 
+databaseService.start();
+
 app.get('/', (req: any, res: any) => {
   res.send('<h1>Hello world</h1>');
 });
@@ -25,5 +28,4 @@ io.on('connection', (socket: any) => {
 
 server.listen(3000, () => {
   console.log('listening on http://localhost:3000/');
-  
 });

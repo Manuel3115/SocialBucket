@@ -1,7 +1,6 @@
 import { BucketItem } from "../interface/bucket_item";
 import { DatabaseService } from "./database.service";
 import * as io from 'socket.io';
-import { Account } from "../class/account";
 
 export class AuthentificationService {
     private databaseService : DatabaseService;
@@ -21,8 +20,8 @@ export class AuthentificationService {
             for(const item of bucketitems){
                 bucketlist.push({name: item, isDone: false});
             }
-            const account = new Account(username, bucketlist);
-            socket.data.user = account;
+            //const account = new Account(username, bucketlist);
+            //socket.data.user = account;
         });
 
         socket.on('User Disconnect', (bucketName: string) => {

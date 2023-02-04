@@ -1,14 +1,13 @@
 import { DATABASE_NAME, DATABASE_URL } from '../constants/database-environment';
 import { Collection, Db, MongoClient } from 'mongodb';
-import 'reflect-metadata';
 import { BucketItem } from '../interface/bucket_item';
 import { CollectionType } from '../constants/database-constants';
-import { UserInformations } from '../interface/user_informations'
+import { UserInformations } from '../interface/user_informations';
 
 
 export class DatabaseService {
-    private db: Db;
-    private client: MongoClient;
+    private client!: MongoClient;
+    private db!: Db;
 
     async start(url: string = DATABASE_URL): Promise<MongoClient | null> {
         try {
@@ -18,6 +17,8 @@ export class DatabaseService {
         } catch {
             throw new Error('Database connection error');
         }
+
+        console.log(await this.getUserInformation('rak553'));
         return this.client;
     }
 
@@ -25,7 +26,7 @@ export class DatabaseService {
     {
         if (username != '')
         {
-            const userAccount = await (this.getCollection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+            const userAccount = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
                 { username: username },
             );
             return userAccount === null || userAccount === undefined;
@@ -42,30 +43,30 @@ export class DatabaseService {
                 username,
                 bucketList
             }
-            await this.getCollection(CollectionType.USERACCOUNT)?.insertOne(userInfo);
+            await this.database?.collection(CollectionType.USERACCOUNT)?.insertOne(userInfo);
             isCreationSuccess = true;
         }
         return isCreationSuccess;
     }
 
-    async getUserInformation(username : string) : Promise<UserInformations>
+    async getUserInformation(username : string) : Promise<UserInformations | null>
     {
-        let userInfo : UserInformations = {
+        let userInfo : UserInformations | null = {
             username : '',
             bucketList : []
         };
-
-        if (await !this.isUsernameFree(username))
+        
+        if (!(await this.isUsernameFree(username)))
         {
-            userInfo = await (this.getCollection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+            userInfo = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
                 { username: username },
             );
         }
         return userInfo;
     }
 
-    private getCollection<T>(collectionType: string): Collection<T> {
-        return this.database?.collection(collectionType);
+    async closeConnection(): Promise<void> {
+        return this.client.close();
     }
 
     get database(): Db {
