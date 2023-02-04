@@ -12,7 +12,7 @@ export class AccountSocketService {
         this.socket = socketManagerService.getSocket();
     }
 
-    register(username : string, bucketList : string[], callback: () => void) {
+    register(username : string, bucketList : string[], callback: (usernameFree: boolean) => void) {
         this.socket.once('Register Success', callback);
         this.socket.emit('User Register', username, bucketList);
     }

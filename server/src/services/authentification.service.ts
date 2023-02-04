@@ -17,7 +17,7 @@ export class AuthentificationService {
             socket.emit('Connect Success');
         });
 
-        socket.on('User Register', (username: string, bucketitems : string[]) => {
+        socket.on('User Register', async (username: string, bucketitems : string[]) => {
             const bucketList : BucketItem[] = [];
             for(const item of bucketitems){
                 bucketList.push({name: item, isDone: false});
@@ -25,8 +25,8 @@ export class AuthentificationService {
             }
             const user : UserInformations = {username, bucketList};
             socket.data.user = user;
+            socket.emit('Register Success', !await this.databaseService.addAcount(username, bucketList));
             // TODO Database Registration
-            socket.emit('Register Success');
         });
 
         socket.on('User Disconnect', (bucketName: string) => {
