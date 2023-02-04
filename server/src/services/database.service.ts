@@ -17,8 +17,14 @@ export class DatabaseService {
         } catch {
             throw new Error('Database connection error');
         }
+        
+        // let userInfo : UserInformations | null = {
+        //     username : 'hello',
+        //     bucketList : [{name : 'haha', isDone : false}, {name : 'nonono', isDone : false}]
+        // };
 
-        console.log(await this.getUserInformation('rak553'));
+        //console.log(await this.addAcount('broyo', [{name : 'broyo', isDone : false}, {name : 'kijdh', isDone : false}]));
+        //console.log(await this.getUsersWithAtleastOneObjectiveInCommonNotDone(userInfo));
         return this.client;
     }
 
@@ -55,7 +61,7 @@ export class DatabaseService {
             username : '',
             bucketList : []
         };
-        
+
         if (!(await this.isUsernameFree(username)))
         {
             userInfo = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
@@ -63,6 +69,43 @@ export class DatabaseService {
             );
         }
         return userInfo;
+    }
+
+    async getUsersWithAtleastOneObjectiveInCommonNotDone(userInfo : UserInformations) : Promise<UserInformations[]>
+    {
+        let usersSharingSameObjectives : UserInformations[] = [];
+
+        if (userInfo.bucketList.length !== 0)
+        {
+            const userInformations = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.find({}).toArray();
+            for (let i = 0; i < userInformations.length; i++)
+            {
+                if (userInfo.username != userInformations[i].username && userInfo.bucketList.some(bucketItem => bucketItem.isDone == false && userInformations[i].bucketList.findIndex(item => bucketItem.name === item.name && item.isDone === false) >= 0))
+                {
+                    userInformations[i].bucketList = this.filterBucketListWithOnlyUndoneTasks(userInformations[i].bucketList);
+                    usersSharingSameObjectives.push(userInformations[i]);
+                }
+            }
+        }
+
+        return usersSharingSameObjectives;
+    }
+
+    filterBucketListWithOnlyUndoneTasks(bucketList : BucketItem[]) : BucketItem[]
+    {
+        let i = 0;
+        while (i < bucketList.length)
+        {
+            if (bucketList[i].isDone)
+            {
+                bucketList.splice(i, 1);
+            }
+            else 
+            {
+                i++;
+            }
+        }
+        return bucketList;
     }
 
     async closeConnection(): Promise<void> {
