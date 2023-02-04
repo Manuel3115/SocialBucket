@@ -1,1 +1,11 @@
-<p>chat works!</p>
+<mat-tab-group class="chat-channels">
+    <mat-tab *ngFor="let channel of channelsList" [label]="channel">
+        <div id="chatBox">
+            <mat-list>
+                <mat-list-item *ngFor="let message of messageHistory">
+                    {{ message }}
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </mat-tab>
+</mat-tab-group>

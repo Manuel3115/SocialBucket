@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { AppRoutingModule } from './modules/app-routing.module';
+import { AppMaterialModule } from './modules/material.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
     AccountPageComponent
   ],
   imports: [
+    AppMaterialModule,
     AppRoutingModule,
     BrowserModule,
     NoopAnimationsModule

@@ -12,7 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 // import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-// import { MatListModule } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 // import { MatMenuModule } from '@angular/material/menu';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -26,7 +26,7 @@ import { MatRadioModule } from '@angular/material/radio';
 // import { MatSortModule } from '@angular/material/sort';
 // import { MatStepperModule } from '@angular/material/stepper';
 // import { MatTableModule } from '@angular/material/table';
-// import { MatTabsModule } from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -45,7 +45,7 @@ const modules = [
     // MatGridListModule,
     MatIconModule,
      MatInputModule,
-    // MatListModule,
+    MatListModule,
     // MatMenuModule,
     // MatPaginatorModule,
     // MatProgressBarModule,
@@ -59,7 +59,7 @@ const modules = [
     // MatSortModule,
     // MatStepperModule,
     // MatTableModule,
-    // MatTabsModule,
+    MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
 ];
