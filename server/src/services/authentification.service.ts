@@ -1,6 +1,7 @@
 import { BucketItem } from "../interface/bucket_item";
 import { DatabaseService } from "./database.service";
 import * as io from 'socket.io';
+import { UserInformations } from "../interface/user_informations";
 
 export class AuthentificationService {
     private databaseService : DatabaseService;
@@ -15,13 +16,14 @@ export class AuthentificationService {
             // TODO
         });
 
-        socket.on('User Register', (username: string, password: string, bucketitems : string[]) => {
-            const bucketlist : BucketItem[] = [];
+        socket.on('User Register', (username: string, bucketitems : string[]) => {
+            const bucketList : BucketItem[] = [];
             for(const item of bucketitems){
-                bucketlist.push({name: item, isDone: false});
+                bucketList.push({name: item, isDone: false});
+                socket.join(item);
             }
-            //const account = new Account(username, bucketlist);
-            //socket.data.user = account;
+            const user : UserInformations = {username, bucketList};
+            socket.data.user = user;
         });
 
         socket.on('User Disconnect', (bucketName: string) => {
