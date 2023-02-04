@@ -14,6 +14,7 @@ export class AuthentificationService {
     handleAuthSockets(socket: io.Socket) {
         socket.on('User Connect', (username: string) => {
             // TODO
+            socket.emit('Connect Success');
         });
 
         socket.on('User Register', (username: string, bucketitems : string[]) => {
@@ -24,6 +25,8 @@ export class AuthentificationService {
             }
             const user : UserInformations = {username, bucketList};
             socket.data.user = user;
+            // TODO Database Registration
+            socket.emit('Register Success');
         });
 
         socket.on('User Disconnect', (bucketName: string) => {
