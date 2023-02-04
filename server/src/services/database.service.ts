@@ -57,8 +57,11 @@ export class DatabaseService {
 
         if (await !this.isUsernameFree(username))
         {
-            
+            userInfo = await (this.getCollection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+                { username: username },
+            );
         }
+        return userInfo;
     }
 
     private getCollection<T>(collectionType: string): Collection<T> {
