@@ -1,6 +1,13 @@
 import * as io from 'socket.io';
+import { DatabaseService } from './database.service';
 
 export class AccountService {
+    private databaseService : DatabaseService;
+    
+    constructor(databaseService : DatabaseService){
+        this.databaseService = databaseService;
+    }
+
     handleAccountSockets(socket: io.Socket) {
         socket.on('Bucket Add', (bucketName: string) => {
             // TODO
@@ -21,6 +28,7 @@ export class AccountService {
         });
 
         socket.on('Get Users Bucket Item', (bucketName: string) => {
+            
             // TODO Connect to DB
             socket.emit('Users Bucket Item', null);
         });

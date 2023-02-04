@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: 'home', component: MainPageComponent },
     { path: 'profile', component: AccountPageComponent },
     { path: 'chat', component: ChatComponent },
-    {path:'log-in', component: LogInPageComponent},
+    { path:'log-in', component: LogInPageComponent},
     { path: '**', redirectTo: '/home' },
 ];
 
