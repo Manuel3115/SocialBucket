@@ -3,6 +3,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 import 'reflect-metadata';
 import { BucketItem } from '../interface/bucket_item';
 import { CollectionType } from '../constants/database-constants';
+import { UserInformations } from '../interface/user_informations'
 
 
 export class DatabaseService {
@@ -20,11 +21,43 @@ export class DatabaseService {
         return this.client;
     }
 
-    async addAcount(username: string, bucketlist: BucketItem[])
+    async isUsernameFree(username: string) : Promise<boolean>
     {
-        if (username != "" && bucketlist.length != 0)
+        if (username != '')
         {
-            await this.getCollection(CollectionType.USERACCOUNT)?.insertOne(username);
+            const userAccount = await (this.getCollection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+                { username: username },
+            );
+            return userAccount === null || userAccount === undefined;
+        }
+        return true;
+    }
+
+    async addAcount(username: string, bucketList: BucketItem[]) : Promise<boolean>
+    {
+        let isCreationSuccess = false;
+        if (username !== '' && bucketList.length !== 0 && await this.isUsernameFree(username))
+        {
+            const userInfo : UserInformations = {
+                username,
+                bucketList
+            }
+            await this.getCollection(CollectionType.USERACCOUNT)?.insertOne(userInfo);
+            isCreationSuccess = true;
+        }
+        return isCreationSuccess;
+    }
+
+    async getUserInformation(username : string) : Promise<UserInformations>
+    {
+        let userInfo : UserInformations = {
+            username : '',
+            bucketList : []
+        };
+
+        if (await !this.isUsernameFree(username))
+        {
+            
         }
     }
 
