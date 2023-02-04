@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bucket-list.component.css']
 })
 export class BucketListComponent implements OnInit {
-  objectives:any= [1,2,3,4,6,7,8]
+  objectives:any= [1,2,3]
   constructor() { }
 
 

@@ -10,6 +10,8 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { BucketListComponent } from './components/bucket-list/bucket-list.component';
 import { ObjectiveComponent } from './components/bucket-list/objective/objective.component';
 import { AppMaterialModule } from './modules/material.module';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AppMaterialModule } from './modules/material.module';
     AccountPageComponent,
     NavigationComponent,
     BucketListComponent,
-    ObjectiveComponent
+    ObjectiveComponent,
+    LogInComponent,
+    LogInPageComponent
   ],
   imports: [
     AppMaterialModule,
