@@ -1,14 +1,18 @@
+const express = require('express');
+const app = express();
 const http = require('http');
+const { Server } = require("socket.io");
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: '*', methods: ['GET', 'POST'] } });
 
-const hostname = '127.0.0.1';
-const port = 3000;
-
-const server = http.createServer((req: any, res: any) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+app.get('/', (req: any, res: any) => {
+  res.send('<h1>Hello world</h1>');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+io.on('connection', (socket: any) => {
+  console.log('a user connected');
+});
+
+server.listen(3000, () => {
+  console.log('listening on http://localhost:3000/');
 });
