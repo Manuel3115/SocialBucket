@@ -91,7 +91,22 @@ export class DatabaseService {
         return usersSharingSameObjectives;
     }
 
-    filterBucketListWithOnlyUndoneTasks(bucketList : BucketItem[]) : BucketItem[]
+    async getUsernamesWithObjective(objectiveName: string, isObjectiveDone: boolean) : Promise<string[]>
+    {
+        const userInformations = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.find({}).toArray();
+        const usernamesWithObjective : string[] = [];
+        for (let i = 0; i < userInformations.length; i++)
+        {
+            if (userInformations[i].bucketList.findIndex(item => objectiveName === item.name && item.isDone === isObjectiveDone))
+            {
+                usernamesWithObjective.push(userInformations[i].username);
+            }
+        }
+
+        return usernamesWithObjective;
+    }
+
+    private filterBucketListWithOnlyUndoneTasks(bucketList : BucketItem[]) : BucketItem[]
     {
         let i = 0;
         while (i < bucketList.length)

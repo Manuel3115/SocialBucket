@@ -3,7 +3,10 @@ import * as io from 'socket.io';
 export class ChatSocketService {
     handleChatSockets(socket: io.Socket) {
         socket.on('Message Sent', (message: string, bucketName: string) => {
-            socket.to(bucketName).emit('New Message', message, bucketName);
+            if(socket.data.user){
+                socket.to(bucketName).emit('New Message', message, socket.data.user.username, bucketName);
+                socket.emit('Message Received');
+            }
         });
     }
 }
