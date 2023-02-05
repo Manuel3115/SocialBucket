@@ -17,16 +17,6 @@ export class DatabaseService {
         } catch {
             throw new Error('Database connection error');
         }
-        
-        // let userInfo : UserInformations | null = {
-        //     username : 'rak553',
-        //     bucketList : [{name : 'IamAPro', isDone : false}]
-        // };
-
-        // this.addItemToBucketList(userInfo);
-
-        //console.log(await this.addAcount('broyo', [{name : 'broyo', isDone : false}, {name : 'kijdh', isDone : false}]));
-        //console.log(await this.getUsersWithAtleastOneObjectiveInCommonNotDone(userInfo));
         return this.client;
     }
 

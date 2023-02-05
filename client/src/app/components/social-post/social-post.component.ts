@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserInformations } from 'src/app/interface/user_informations';
+import { ObjectiveService } from 'src/app/services/objective.service';
 
 @Component({
   selector: 'app-social-post',
@@ -9,8 +10,8 @@ import { UserInformations } from 'src/app/interface/user_informations';
 export class SocialPostComponent implements OnInit {
   @Input() userinformation!: UserInformations;
 
+  constructor() {}
+
   ngOnInit(): void {
-
   }
-
 }

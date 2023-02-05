@@ -1,3 +1,10 @@
-<div *ngFor="let userinfo of usersInformations">
-    <app-social-post [userinformation]="userinfo"></app-social-post>
+<div class = "container">
+    <app-navigation>
+    </app-navigation>
+
+    <div class = "bucketListContainer">
+        <div *ngFor="let userinfo of usersInformations">
+            <app-social-post [userinformation]="userinfo"></app-social-post>
+        </div>
+    </div>
 </div>

@@ -1,7 +1,9 @@
-<div class="container">
-    <div>{{userinformation.username}}</div>
-    <p>Liste des objectifs non complétés</p>
-    <p *ngFor="let bucketItem of userinformation.bucketList">
-        {{bucketItem.name}}
-    </p>
-</div>
+<body>
+    <h1>{{userinformation.username}}</h1>
+    <div>
+        <ol>
+            <li *ngFor="let bucketItem of userinformation.bucketList"> {{bucketItem.name}}</li>
+        </ol>
+    </div>
+</body>
+
