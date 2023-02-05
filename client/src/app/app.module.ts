@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './chat/chat.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -21,7 +20,6 @@ import { SocialPostComponent } from './components/social-post/social-post.compon
   declarations: [
     AppComponent,
     ChatComponent,
-    MainPageComponent,
     AccountPageComponent,
     NavigationComponent,
     BucketListComponent,
