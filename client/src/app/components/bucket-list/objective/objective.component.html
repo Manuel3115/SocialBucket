@@ -1,7 +1,7 @@
 <mat-card >
     <mat-card-header>
-      <mat-card-title>Objective</mat-card-title>
-      <mat-card-subtitle>blah blah blah blah</mat-card-subtitle>
+      <mat-card-title>{{objectiveName}}</mat-card-title>
+      <mat-card-subtitle>{{objectiveDesc}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions >
       <button (click) = "changeStatus()" mat-button><mat-icon *ngIf = "isSucceeded" >done</mat-icon><mat-icon *ngIf = "!isSucceeded" >help_outline</mat-icon></button>

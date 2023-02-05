@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-objective',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./objective.component.css']
 })
 export class ObjectiveComponent implements OnInit {
-  isSucceeded:boolean = false
+  @Input() objectiveName : string = '';
+  @Input() objectiveDesc : string = '';
+  @Input() isSucceeded:boolean = false
   constructor() { }
 
   ngOnInit(): void {
