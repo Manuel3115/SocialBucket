@@ -12,6 +12,9 @@ import { ObjectiveComponent } from './components/bucket-list/objective/objective
 import { AppMaterialModule } from './modules/material.module';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { ObjectivesToAddPageComponent } from './pages/objectives-to-add-page/objectives-to-add-page.component';
+import { BucketListToAddComponent } from './components/bucket-list-to-add/bucket-list-to-add.component';
+import { ObjectiveToAddComponent } from './components/bucket-list-to-add/objective-to-add/objective-to-add.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
     BucketListComponent,
     ObjectiveComponent,
     LogInComponent,
-    LogInPageComponent
+    LogInPageComponent,
+    ObjectivesToAddPageComponent,
+    BucketListToAddComponent,
+    ObjectiveToAddComponent
   ],
   imports: [
     AppMaterialModule,
