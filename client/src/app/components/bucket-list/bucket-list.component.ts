@@ -13,4 +13,8 @@ export class BucketListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addedObjectives(){
+    
+  }
+
 }
