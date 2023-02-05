@@ -19,7 +19,7 @@ export class AccountSocketService {
         this.socket.emit('User Register', username, bucketList);
     }
 
-    connect(username : string, callback: () => void) {
+    connect(username : string, callback: (success : boolean) => void) {
         this.socket.once('Connect Success', callback);
         this.socket.emit('User Connect', username);
     }

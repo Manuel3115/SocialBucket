@@ -1,4 +1,3 @@
-import { BucketItem } from "./interface/bucket_item";
 import { AccountService } from "./services/account.service";
 import { AuthentificationService } from "./services/authentification.service";
 import { ChatSocketService } from "./services/chat.service";
