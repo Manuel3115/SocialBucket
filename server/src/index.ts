@@ -1,4 +1,5 @@
 import { BucketItem } from "./interface/bucket_item";
+import { AccountService } from "./services/account.service";
 import { AuthentificationService } from "./services/authentification.service";
 import { ChatSocketService } from "./services/chat.service";
 import { DatabaseService } from "./services/database.service";
@@ -13,6 +14,7 @@ const io = new Server(server, { cors: { origin: '*', methods: ['GET', 'POST'] } 
 const databaseService = new DatabaseService();
 const chatSocketService = new ChatSocketService();
 const authService = new AuthentificationService(databaseService);
+const accountService = new AccountService(databaseService);
 
 databaseService.start();
 
@@ -23,6 +25,7 @@ app.get('/', (req: any, res: any) => {
 io.on('connection', (socket: any) => {
   chatSocketService.handleChatSockets(socket);
   authService.handleAuthSockets(socket);
+  accountService.handleAccountSockets(socket);
   console.log('a user connected');
 });
 

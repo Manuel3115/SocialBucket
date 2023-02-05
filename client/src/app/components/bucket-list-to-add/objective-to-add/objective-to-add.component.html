@@ -1,0 +1,9 @@
+<mat-card >
+    <mat-card-header>
+      <mat-card-title>{{name}}</mat-card-title>
+      <mat-card-subtitle>{{description}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions >
+      <button (click) = "addObjective()" mat-button><mat-icon *ngIf = "!isAdded">add_circle_outline</mat-icon><mat-icon *ngIf = "isAdded">minimize</mat-icon></button>
+    </mat-card-actions>
+</mat-card>

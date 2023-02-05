@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
+import { UserInformations } from '../interface/user_informations';
 import { SocketManagerService } from './socket-manager.service';
 
 @Injectable({
@@ -30,5 +31,11 @@ export class AccountSocketService {
     getUsersBucketItem(bucketItem : string, callback: (userList: string[], bucketItem:string) => void){
         this.socket.once('Users Bucket Item', callback);
         this.socket.emit('Get Users Bucket Item', bucketItem);
+    }
+
+    getUsersWithSameObjective(callback: (usersInformations : UserInformations[]) => void)
+    {
+        this.socket.once('Users with objective in common', callback);
+        this.socket.emit('Get users with objective in common')
     }
 }

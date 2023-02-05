@@ -25,10 +25,26 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatService.setMessageListener(this.receiveMesssage);
-    this.accountService.getBucketList(bucketList: {name : string, isDone: boolean}[])
+    this.accountService.getBucketList(this.getChannels);
   }
 
-  getChannels()
+  getChannels(bucketList: BucketList[]){
+    for(let item of bucketList){
+      if(!item.isDone){
+        this.channelList.push({name: item.name, messageHistory:[], userList:[]});
+        this.accountService.getUsersBucketItem(item.name, this.fillUserList);
+      }
+    }
+  }
+
+  fillUserList(userList:string[], bucketName:string){
+    for(let channel of this.channelList){
+      if(channel.name==bucketName){
+        channel.userList = userList;
+      }
+    }
+  }
+
 
   receiveMesssage(message: string, username:string, bucketName: string):void 
   {
@@ -44,8 +60,8 @@ export class ChatComponent implements OnInit {
     console.log(this.tabSelected);
   }
 
-  sendMessage(message:string):void {
-    this.chatService.sendMessage(message, this.channelList[this.tabSelected].name, this.pushMessageToBoard);
+  sendMessage():void {
+    this.chatService.sendMessage(this.message, this.channelList[this.tabSelected].name, this.pushMessageToBoard);
   }
 
   pushMessageToBoard():void

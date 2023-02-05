@@ -16,8 +16,7 @@
 </mat-tab-group>
 <div id="inputField">
     <div>
-        <input matInput id="input" [(ngModel)]="message" #message maxlength="256" placeholder="Chat with others">
-        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+        <input matInput id="input" [(ngModel)]="message" maxlength="256" placeholder="Chat with others">
     </div>
-    <button mat-raised-button id="sendButton" (onClick)="sendMessage(message.value)" >Send</button>
+    <button mat-raised-button id="sendButton" (onClick)="sendMessage()" >Send</button>
 </div>
