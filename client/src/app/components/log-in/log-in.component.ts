@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountSocketService } from 'src/app/services/account-socket.service';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LogInComponent implements OnInit {
     username : "",
     password : ""
   }
-  constructor(private router:Router,private accountservice:AccountService) { }
+  constructor(private router:Router,private accountservice:AccountService, private accountSocketService : AccountSocketService) { }
 
   ngOnInit(): void {
 
@@ -21,7 +22,15 @@ export class LogInComponent implements OnInit {
   createAccount(){
     this.accountservice.account.username = this.account.username
     this.accountservice.account.password = this.account.password
-    this.router.navigate(['objectives-to-add'])
+    this.accountSocketService.connect(this.account.username, this.connectCallback.bind(this));
+  }
+
+  connectCallback(success: boolean){
+    if(success){
+      this.router.navigate(['profile'])
+    }else{
+      this.router.navigate(['objectives-to-add'])
+    }
   }
 
   checkEmpty(){

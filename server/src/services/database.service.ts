@@ -59,10 +59,7 @@ export class DatabaseService {
 
     async getUserInformation(username : string) : Promise<UserInformations | null>
     {
-        let userInfo : UserInformations | null = {
-            username : '',
-            bucketList : []
-        };
+        let userInfo : UserInformations | null = null
 
         if (!(await this.isUsernameFree(username)))
         {

@@ -15,9 +15,7 @@ export class AuthentificationService {
         socket.on('User Connect', async (username: string) => {
             const user : UserInformations | null = await this.databaseService.getUserInformation(username);
             let isConnectionSuccess = false;
-
-            if (user !== null)
-            {
+            if (user){
                 socket.data.user = user;
                 this.addUserToNonCompletedObjectivesChatRoom(socket);
                 isConnectionSuccess = true;
