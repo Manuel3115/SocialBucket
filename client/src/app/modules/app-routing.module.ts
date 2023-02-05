@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ChatComponent } from '../chat/chat.component';
 import { LogInComponent } from '../components/log-in/log-in.component';
 import { AccountPageComponent } from '../pages/account-page/account-page.component';
 import { LogInPageComponent } from '../pages/log-in-page/log-in-page.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: MainPageComponent },
     { path: 'profile', component: AccountPageComponent },
+    { path: 'chat', component: ChatComponent },
     {path:'log-in', component: LogInPageComponent},
     {path:'objectives-to-add', component: ObjectivesToAddPageComponent},
     { path: '**', redirectTo: '/home' },

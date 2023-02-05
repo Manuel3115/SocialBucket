@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { ChatComponent } from './chat/chat.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { AccountPageComponent } from './pages/account-page/account-page.component';
@@ -15,10 +15,12 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { ObjectivesToAddPageComponent } from './pages/objectives-to-add-page/objectives-to-add-page.component';
 import { BucketListToAddComponent } from './components/bucket-list-to-add/bucket-list-to-add.component';
 import { ObjectiveToAddComponent } from './components/bucket-list-to-add/objective-to-add/objective-to-add.component';
+import { SocialPostComponent } from './components/social-post/social-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ChatComponent,
     MainPageComponent,
     AccountPageComponent,
     NavigationComponent,
@@ -28,7 +30,8 @@ import { ObjectiveToAddComponent } from './components/bucket-list-to-add/objecti
     LogInPageComponent,
     ObjectivesToAddPageComponent,
     BucketListToAddComponent,
-    ObjectiveToAddComponent
+    ObjectiveToAddComponent,
+    SocialPostComponent
   ],
   imports: [
     AppMaterialModule,

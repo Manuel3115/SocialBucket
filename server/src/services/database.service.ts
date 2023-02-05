@@ -19,9 +19,11 @@ export class DatabaseService {
         }
         
         // let userInfo : UserInformations | null = {
-        //     username : 'hello',
-        //     bucketList : [{name : 'haha', isDone : false}, {name : 'nonono', isDone : false}]
+        //     username : 'rak553',
+        //     bucketList : [{name : 'IamAPro', isDone : false}]
         // };
+
+        // this.addItemToBucketList(userInfo);
 
         //console.log(await this.addAcount('broyo', [{name : 'broyo', isDone : false}, {name : 'kijdh', isDone : false}]));
         //console.log(await this.getUsersWithAtleastOneObjectiveInCommonNotDone(userInfo));
@@ -104,6 +106,17 @@ export class DatabaseService {
         }
 
         return usernamesWithObjective;
+    }
+
+    async updateAccountInformations(userInformations : UserInformations)
+    {
+        if (!(await this.isUsernameFree(userInformations.username)))
+        {
+            this.database?.collection(CollectionType.USERACCOUNT)?.updateOne(
+                {'username' : userInformations.username},
+                {$set: {'bucketList' : userInformations.bucketList}}
+            )
+        }
     }
 
     private filterBucketListWithOnlyUndoneTasks(bucketList : BucketItem[]) : BucketItem[]
