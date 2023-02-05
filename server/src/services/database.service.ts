@@ -34,7 +34,7 @@ export class DatabaseService {
     {
         if (username != '')
         {
-            const userAccount = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+            const userAccount = await (this.database.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>).findOne(
                 { username: username },
             );
             return userAccount === null || userAccount === undefined;
@@ -51,7 +51,7 @@ export class DatabaseService {
                 username,
                 bucketList
             }
-            await this.database?.collection(CollectionType.USERACCOUNT)?.insertOne(userInfo);
+            await this.database.collection(CollectionType.USERACCOUNT).insertOne(userInfo);
             isCreationSuccess = true;
         }
         return isCreationSuccess;
@@ -63,7 +63,7 @@ export class DatabaseService {
 
         if (!(await this.isUsernameFree(username)))
         {
-            userInfo = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.findOne(
+            userInfo = await (this.database.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>).findOne(
                 { username: username },
             );
         }
@@ -76,7 +76,7 @@ export class DatabaseService {
 
         if (userInfo.bucketList.length !== 0)
         {
-            const userInformations = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.find({}).toArray();
+            const userInformations = await (this.database.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>).find({}).toArray();
             for (let i = 0; i < userInformations.length; i++)
             {
                 if (userInfo.username != userInformations[i].username && userInfo.bucketList.some(bucketItem => bucketItem.isDone == false && userInformations[i].bucketList.findIndex(item => bucketItem.name === item.name && item.isDone === false) >= 0))
@@ -92,7 +92,7 @@ export class DatabaseService {
 
     async getUsernamesWithObjective(objectiveName: string, isObjectiveDone: boolean) : Promise<string[]>
     {
-        const userInformations = await (this.database?.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>)?.find({}).toArray();
+        const userInformations = await (this.database.collection(CollectionType.USERACCOUNT) as Collection<UserInformations>).find({}).toArray();
         const usernamesWithObjective : string[] = [];
         for (let i = 0; i < userInformations.length; i++)
         {
@@ -108,7 +108,7 @@ export class DatabaseService {
     {
         if (!(await this.isUsernameFree(userInformations.username)))
         {
-            this.database?.collection(CollectionType.USERACCOUNT)?.updateOne(
+            this.database.collection(CollectionType.USERACCOUNT).updateOne(
                 {'username' : userInformations.username},
                 {$set: {'bucketList' : userInformations.bucketList}}
             )
