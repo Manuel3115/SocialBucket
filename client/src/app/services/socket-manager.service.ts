@@ -8,7 +8,7 @@ export class SocketManagerService {
     socket: Socket;
 
     constructor() {
-        this.socket = io('10.200.44.52:3000/');
+        this.socket = io('107.152.43.46:3000/');
     }
 
     getSocket(): Socket {
