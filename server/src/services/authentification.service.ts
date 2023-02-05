@@ -44,7 +44,7 @@ export class AuthentificationService {
         const userObjectives = socket.data.user.bucketList;
         for(let i = 0; i < userObjectives.length; i++)
         {
-            if (userObjectives[i].isDone)
+            if (!userObjectives[i].isDone)
             {
                 socket.join(userObjectives[i].name);
             }

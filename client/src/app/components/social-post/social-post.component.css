@@ -1,19 +1,21 @@
 body {
-    background-color: #ffc800;
+    background-color: white;
     border-radius: 15px;
     color: #f7f3f3;
     font-weight: 55;
     text-align: center;
-    width: 50%;
-
+    width: 40%;
+    margin: auto;
+    margin-bottom: 20px;
 }
 h1 {
     align-items: center;
     background-color: #202020;
+    color: #FFDF6C;
     border-radius: 15px;
     display: flex;
     font-family: The Father;
-    font-size: 55px;
+    font-size: 44px;
     font-weight: 750;
     height : 20%;
     justify-content: center;

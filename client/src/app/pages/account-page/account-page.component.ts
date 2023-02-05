@@ -21,6 +21,5 @@ export class AccountPageComponent implements OnInit {
   setBucketList(bucketList : BucketItem[])
   {
     this.bucketL = bucketList;
-    console.log(this.bucketL);
   }
 }
