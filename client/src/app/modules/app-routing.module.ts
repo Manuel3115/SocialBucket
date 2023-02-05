@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from '../chat/chat.component';
-import { LogInComponent } from '../components/log-in/log-in.component';
 import { AccountPageComponent } from '../pages/account-page/account-page.component';
 import { LogInPageComponent } from '../pages/log-in-page/log-in-page.component';
 import { ObjectivesToAddPageComponent } from '../pages/objectives-to-add-page/objectives-to-add-page.component';
