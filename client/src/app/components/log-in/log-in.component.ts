@@ -31,5 +31,4 @@ export class LogInComponent implements OnInit {
       return false
     }
   }
-
 }

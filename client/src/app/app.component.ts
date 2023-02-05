@@ -8,8 +8,4 @@ import { SocketManagerService } from './services/socket-manager.service';
 })
 export class AppComponent {
   title = 'client';
-
-  constructor(socketManagerService : SocketManagerService){
-    console.log('TEST|');
-  }
 }

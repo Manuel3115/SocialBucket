@@ -11,9 +11,10 @@ import { ObjectivesToAddService } from 'src/app/services/objectives-to-add.servi
 })
 export class ObjectivesToAddPageComponent implements OnInit {
   objectivesAdded:any[] = []
-  constructor(private objectiveToAddService:ObjectivesToAddService,private router:Router,private accountService:AccountService, private accountSocketService : AccountSocketService) { }
+  constructor(private objectiveToAddService:ObjectivesToAddService, private router : Router ,private accountService:AccountService, private accountSocketService : AccountSocketService) { }
 
   ngOnInit(): void {
+    if(!this.accountService.account.username) this.router.navigate(['log-in']);
     this.objectiveToAddService.newObjectiveSubject.subscribe((value:any)=>{
       this.objectivesAdded.push(value)
     })
@@ -26,19 +27,20 @@ export class ObjectivesToAddPageComponent implements OnInit {
 
   addToBucketList(){
     this.accountService.account.objective = this.objectivesAdded
-    console.log(this.accountService.account)
+    console.log(this.accountService.account);
     const objectiveNames = []
     for (let i =0; i < this.objectivesAdded.length; i++)
     {
       objectiveNames.push(this.objectivesAdded[i].name);
     }
-    this.accountSocketService.register(this.accountService.account.username, objectiveNames, this.naviguateToNextPage);
+    this.accountSocketService.register(this.accountService.account.username, objectiveNames, this.naviguateToNextPage.bind(this));
   }
 
   naviguateToNextPage(accountCreated : boolean)
   {
     if (accountCreated)
     {
+      console.log(this);
       this.router.navigate(['profile']);
     }
   }

@@ -17,6 +17,7 @@ export class ChatSocketService {
     }
 
     sendMessage(message: string, bucketName: string, callback: () => void){
+        console.log(message);
         this.socket.once('Message Received', callback);
         this.socket.emit('Message Sent', message, bucketName);
     }

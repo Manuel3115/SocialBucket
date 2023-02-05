@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { Router } from '@angular/router';
 import { AccountSocketService } from '../services/account-socket.service';
+import { AccountService } from '../services/account.service';
 import { ChatSocketService } from '../services/chat-socket.service';
 
 @Component({
@@ -12,27 +14,23 @@ import { ChatSocketService } from '../services/chat-socket.service';
 
 export class ChatComponent implements OnInit {
 
-  constructor(chatService:ChatSocketService, accountService: AccountSocketService) {
-    this.chatService=chatService;
-    this.accountService=accountService;
-   }
+  constructor(private chatService:ChatSocketService, private accountSocketService: AccountSocketService, private accountService: AccountService, private router: Router) {}
 
-  chatService:ChatSocketService;
-  accountService:AccountSocketService;
   channelList: Channel[] = [];
   tabSelected:number = 0;
   message : string = "";
 
   ngOnInit(): void {
-    this.chatService.setMessageListener(this.receiveMesssage);
-    this.accountService.getBucketList(this.getChannels);
+    if(!this.accountService.account.username) this.router.navigate(['log-in']);
+    this.chatService.setMessageListener(this.receiveMesssage.bind(this));
+    this.accountSocketService.getBucketList(this.getChannels.bind(this));
   }
 
   getChannels(bucketList: BucketList[]){
     for(let item of bucketList){
       if(!item.isDone){
         this.channelList.push({name: item.name, messageHistory:[], userList:[]});
-        this.accountService.getUsersBucketItem(item.name, this.fillUserList);
+        this.accountSocketService.getUsersBucketItem(item.name, this.fillUserList.bind(this));
       }
     }
   }
@@ -61,7 +59,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage():void {
-    this.chatService.sendMessage(this.message, this.channelList[this.tabSelected].name, this.pushMessageToBoard);
+    this.chatService.sendMessage(this.message, this.channelList[this.tabSelected].name, this.pushMessageToBoard.bind(this));
   }
 
   pushMessageToBoard():void

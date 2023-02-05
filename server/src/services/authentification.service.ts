@@ -34,7 +34,6 @@ export class AuthentificationService {
             const user : UserInformations = {username, bucketList};
             socket.data.user = user;
             socket.emit('Register Success', await this.databaseService.addAcount(username, bucketList));
-            // TODO Database Registration
         });
 
         socket.on('User Disconnect', (bucketName: string) => {
