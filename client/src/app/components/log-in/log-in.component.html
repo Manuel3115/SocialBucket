@@ -3,12 +3,12 @@
 <form class = "form">
     <mat-form-field >
       <mat-label>Username</mat-label>
-      <input matInput >
+      <input matInput name = "username"  [(ngModel)] = "account.username">
     </mat-form-field>
     <mat-form-field >
         <mat-label>Password</mat-label>
-        <input matInput  >
+        <input matInput name = "password"  [(ngModel)] = "account.password">
     </mat-form-field>
-    <button (click) = "createAccount()" mat-raised-button > Create an account </button>
+    <button (click) = "createAccount()" mat-raised-button > Continue </button>
   </form>
 </div>

@@ -16,6 +16,7 @@ import { ObjectivesToAddPageComponent } from './pages/objectives-to-add-page/obj
 import { BucketListToAddComponent } from './components/bucket-list-to-add/bucket-list-to-add.component';
 import { ObjectiveToAddComponent } from './components/bucket-list-to-add/objective-to-add/objective-to-add.component';
 import { SocialPostComponent } from './components/social-post/social-post.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SocialPostComponent } from './components/social-post/social-post.compon
     AppMaterialModule,
     AppRoutingModule,
     BrowserModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
