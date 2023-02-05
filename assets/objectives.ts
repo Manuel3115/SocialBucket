@@ -1,4 +1,6 @@
-export const objectives = [
+import { Objective } from "src/app/interface/objective";
+
+export const objectives : Objective[] = [
     {
         name:"Get in shape",
         description:"Go to the gym for the first time"
