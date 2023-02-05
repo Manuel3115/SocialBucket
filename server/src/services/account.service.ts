@@ -46,6 +46,10 @@ export class AccountService {
             }
         });
 
+        socket.on('Get users with objective in common', async () => {
+            socket.emit('Users with objective in common', await this.databaseService.getUsersWithObjectiveInCommonNotDone(socket.data.user));
+        })
+
         socket.on('Get Users Bucket Item', async (bucketName: string) => {
             socket.emit('Users Bucket Item', await this.databaseService.getUsernamesWithObjective(bucketName, false));
         });
