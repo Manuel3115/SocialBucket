@@ -51,7 +51,7 @@ export class AccountService {
         })
 
         socket.on('Get Users Bucket Item', async (bucketName: string) => {
-            socket.emit('Users Bucket Item', await this.databaseService.getUsernamesWithObjective(bucketName, false));
+            socket.emit('Users Bucket Item', await this.databaseService.getUsernamesWithObjective(bucketName, false), bucketName);
         });
     }
 }

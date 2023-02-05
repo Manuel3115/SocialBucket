@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AccountSocketService } from 'src/app/services/account-socket.service';
 import { AccountService } from 'src/app/services/account.service';
 import { ObjectivesToAddService } from 'src/app/services/objectives-to-add.service';
 
@@ -10,7 +11,7 @@ import { ObjectivesToAddService } from 'src/app/services/objectives-to-add.servi
 })
 export class ObjectivesToAddPageComponent implements OnInit {
   objectivesAdded:any[] = []
-  constructor(private objectiveToAddService:ObjectivesToAddService,private router:Router,private accountService:AccountService) { }
+  constructor(private objectiveToAddService:ObjectivesToAddService,private router:Router,private accountService:AccountService, private accountSocketService : AccountSocketService) { }
 
   ngOnInit(): void {
     this.objectiveToAddService.newObjectiveSubject.subscribe((value:any)=>{
@@ -26,9 +27,21 @@ export class ObjectivesToAddPageComponent implements OnInit {
   addToBucketList(){
     this.accountService.account.objective = this.objectivesAdded
     console.log(this.accountService.account)
-    this.router.navigate(['profile']);
+    const objectiveNames = []
+    for (let i =0; i < this.objectivesAdded.length; i++)
+    {
+      objectiveNames.push(this.objectivesAdded[i].name);
+    }
+    this.accountSocketService.register(this.accountService.account.username, objectiveNames, this.naviguateToNextPage);
   }
 
+  naviguateToNextPage(accountCreated : boolean)
+  {
+    if (accountCreated)
+    {
+      this.router.navigate(['profile']);
+    }
+  }
 
 
 }

@@ -13,7 +13,6 @@ export class SocialFeedPageComponent implements OnInit {
   constructor(private accountSocketService : AccountSocketService) {}
 
   ngOnInit(): void {
-    this.accountSocketService.register('hi', ['haha'], () => {});
     this.accountSocketService.getUsersWithSameObjective(this.setUsersInformations);
   }
 
