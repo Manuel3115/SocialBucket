@@ -25,6 +25,7 @@ export class ObjectivesToAddPageComponent implements OnInit {
 
   addToBucketList(){
     this.accountService.account.objective = this.objectivesAdded
+    console.log(this.accountService.account)
     this.router.navigate(['profile']);
   }
 

@@ -9,6 +9,6 @@
         <mat-label>Password</mat-label>
         <input matInput name = "password"  [(ngModel)] = "account.password">
     </mat-form-field>
-    <button (click) = "createAccount()" mat-raised-button > Continue </button>
+    <button [disabled] = "checkEmpty()"(click) = "createAccount()" mat-raised-button > Continue </button>
   </form>
 </div>

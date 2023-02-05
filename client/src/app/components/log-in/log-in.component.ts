@@ -24,4 +24,12 @@ export class LogInComponent implements OnInit {
     this.router.navigate(['objectives-to-add'])
   }
 
+  checkEmpty(){
+    if (this.account.username == "" || this.account.password == ""){
+      return true
+    }else{
+      return false
+    }
+  }
+
 }
