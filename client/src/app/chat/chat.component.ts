@@ -33,6 +33,7 @@ export class ChatComponent implements OnInit {
         this.accountSocketService.getUsersBucketItem(item.name, this.fillUserList.bind(this));
       }
     }
+
   }
 
   fillUserList(userList:string[], bucketName:string){
@@ -48,14 +49,13 @@ export class ChatComponent implements OnInit {
   {
     let time = new Date;
     for(let channel of this.channelList){
-      if(channel.name=bucketName)
-        channel.messageHistory.push(time.toUTCString()+username+message);
+      if(channel.name===bucketName)
+        channel.messageHistory.push(time.toLocaleString().split(',')[1] + " | " + username + " : " + message);
     }
   }
 
   updateTab(index:number):void {
     this.tabSelected = index;
-    console.log(this.tabSelected);
   }
 
   sendMessage():void {
@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit {
   pushMessageToBoard():void
   {
     let time = new Date;
-    this.channelList[this.tabSelected].messageHistory.push(time.toUTCString+this.message);
+    this.channelList[this.tabSelected].messageHistory.push(time.toLocaleString().split(',')[1] + " | You : " + this.message);
     this.message="";
   }
 

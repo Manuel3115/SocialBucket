@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { io, Socket } from 'socket.io-client';
+import { Socket } from 'socket.io-client';
 import { UserInformations } from '../interface/user_informations';
 import { SocketManagerService } from './socket-manager.service';
 
@@ -29,7 +29,7 @@ export class AccountSocketService {
     }
 
     getUsersBucketItem(bucketItem : string, callback: (userList: string[], bucketItem:string) => void){
-        this.socket.once('Users Bucket Item', callback);
+        this.socket.on('Users Bucket Item', callback);
         this.socket.emit('Get Users Bucket Item', bucketItem);
     }
 

@@ -26,7 +26,6 @@ io.on('connection', (socket: any) => {
   chatSocketService.handleChatSockets(socket);
   authService.handleAuthSockets(socket);
   accountService.handleAccountSockets(socket);
-  console.log('a user connected');
 });
 
 server.listen(3000, () => {

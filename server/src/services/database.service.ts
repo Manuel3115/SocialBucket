@@ -99,12 +99,11 @@ export class DatabaseService {
         const usernamesWithObjective : string[] = [];
         for (let i = 0; i < userInformations.length; i++)
         {
-            if (userInformations[i].bucketList.findIndex(item => objectiveName === item.name && item.isDone === isObjectiveDone))
+            if (userInformations[i].bucketList.findIndex((item) => objectiveName === item.name && item.isDone === isObjectiveDone) !== -1)
             {
                 usernamesWithObjective.push(userInformations[i].username);
             }
         }
-
         return usernamesWithObjective;
     }
 
