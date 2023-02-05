@@ -27,7 +27,6 @@ export class ObjectivesToAddPageComponent implements OnInit {
 
   addToBucketList(){
     this.accountService.account.objective = this.objectivesAdded
-    console.log(this.accountService.account);
     const objectiveNames = []
     for (let i =0; i < this.objectivesAdded.length; i++)
     {
@@ -40,7 +39,6 @@ export class ObjectivesToAddPageComponent implements OnInit {
   {
     if (accountCreated)
     {
-      console.log(this);
       this.router.navigate(['profile']);
     }
   }
