@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'socket.io-client';
+import { BucketItem } from '../interface/bucket_item';
 import { UserInformations } from '../interface/user_informations';
 import { SocketManagerService } from './socket-manager.service';
 
@@ -37,5 +38,10 @@ export class AccountSocketService {
     {
         this.socket.once('Users with objective in common', callback);
         this.socket.emit('Get users with objective in common')
+    }
+
+    changeBucketItemCheckedStatus(bucketItem : BucketItem)
+    {
+        this.socket.emit('Change bucket check', bucketItem);
     }
 }

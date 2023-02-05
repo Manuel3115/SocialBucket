@@ -23,13 +23,14 @@ export class AccountService {
             socket.emit('Bucket Added', itemAdded);
         });
 
-        socket.on('Bucket Check', async (bucketName: string) => {
+        socket.on('Change bucket check', async (bucketItem : BucketItem) => {
             // TODO
             let itemChecked = false;
-            if (socket.data.user.bucketList.findIndex((item : BucketItem) => item.name === bucketName) >= 0)
+            if (socket.data.user.bucketList.findIndex((item : BucketItem) => item.name === bucketItem.name) >= 0)
             {
-                const bucketItem : BucketItem = { name : bucketName, isDone : false};
-                socket.data.user.bucketList.find((item : BucketItem) => item.name = bucketName).isDone = true;
+                console.log(socket.data.user.bucketList);
+                socket.data.user.bucketList.find((item : BucketItem) => item.name === bucketItem.name).isDone = bucketItem.isDone;
+                console.log(socket.data.user.bucketList);
                 await this.databaseService.updateAccountInformations(socket.data.user);
                 itemChecked = true;
             }
