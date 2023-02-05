@@ -15,12 +15,17 @@
 
 app-bucket-list-to-add{
     position: relative;
-    top:15%;
+    top : -5%;
     width: 60%;
     height: 80%
 }
 
+img{
+    position: relative;
+    top: 5%;
+    border-radius: 10px;
+}
+
 button{
-    top:300%;
-    
+    margin-bottom: 25%;
 }
