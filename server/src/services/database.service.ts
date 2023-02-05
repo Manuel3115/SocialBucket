@@ -73,7 +73,7 @@ export class DatabaseService {
         return userInfo;
     }
 
-    async getUsersWithAtleastOneObjectiveInCommonNotDone(userInfo : UserInformations) : Promise<UserInformations[]>
+    async getUsersWithObjectiveInCommonNotDone(userInfo : UserInformations) : Promise<UserInformations[]>
     {
         let usersSharingSameObjectives : UserInformations[] = [];
 

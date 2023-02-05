@@ -13,6 +13,7 @@ import { AppMaterialModule } from './modules/material.module';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
 import { SocialPostComponent } from './components/social-post/social-post.component';
+import { SocialFeedPageComponent } from './pages/social-feed-page/social-feed-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SocialPostComponent } from './components/social-post/social-post.compon
     ObjectiveComponent,
     LogInComponent,
     LogInPageComponent,
-    SocialPostComponent
+    SocialPostComponent,
+    SocialFeedPageComponent
   ],
   imports: [
     AppMaterialModule,

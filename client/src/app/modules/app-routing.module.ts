@@ -5,6 +5,7 @@ import { LogInComponent } from '../components/log-in/log-in.component';
 import { AccountPageComponent } from '../pages/account-page/account-page.component';
 import { LogInPageComponent } from '../pages/log-in-page/log-in-page.component';
 import { MainPageComponent } from '../pages/main-page/main-page.component';
+import { SocialFeedPageComponent } from '../pages/social-feed-page/social-feed-page.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
     { path: 'profile', component: AccountPageComponent },
     { path: 'chat', component: ChatComponent },
     {path:'log-in', component: LogInPageComponent},
+    {path:'social-feed', component: SocialFeedPageComponent},
     { path: '**', redirectTo: '/home' },
 ];
 
