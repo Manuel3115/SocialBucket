@@ -12,8 +12,12 @@ import { ObjectiveComponent } from './components/bucket-list/objective/objective
 import { AppMaterialModule } from './modules/material.module';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { ObjectivesToAddPageComponent } from './pages/objectives-to-add-page/objectives-to-add-page.component';
+import { BucketListToAddComponent } from './components/bucket-list-to-add/bucket-list-to-add.component';
+import { ObjectiveToAddComponent } from './components/bucket-list-to-add/objective-to-add/objective-to-add.component';
 import { SocialPostComponent } from './components/social-post/social-post.component';
 import { SocialFeedPageComponent } from './pages/social-feed-page/social-feed-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,13 +31,18 @@ import { SocialFeedPageComponent } from './pages/social-feed-page/social-feed-pa
     LogInComponent,
     LogInPageComponent,
     SocialPostComponent,
-    SocialFeedPageComponent
+    SocialFeedPageComponent,
+    ObjectivesToAddPageComponent,
+    BucketListToAddComponent,
+    ObjectiveToAddComponent,
+    SocialPostComponent
   ],
   imports: [
     AppMaterialModule,
     AppRoutingModule,
     BrowserModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

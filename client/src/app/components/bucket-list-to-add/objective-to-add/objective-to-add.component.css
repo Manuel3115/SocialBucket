@@ -1,0 +1,14 @@
+mat-card-actions{
+    position: relative;
+    display: flex;
+
+}
+
+mat-card{
+    justify-content: space-between;
+    display: flex;
+}
+
+.succeed{
+    background-color: rgb(124, 216, 124);
+}
