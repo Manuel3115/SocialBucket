@@ -12,6 +12,7 @@ import { ObjectiveComponent } from './components/bucket-list/objective/objective
 import { AppMaterialModule } from './modules/material.module';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogInPageComponent } from './pages/log-in-page/log-in-page.component';
     AppMaterialModule,
     AppRoutingModule,
     BrowserModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

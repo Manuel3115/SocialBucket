@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { AccountSocketService } from '../services/account-socket.service';
+import { ChatSocketService } from '../services/chat-socket.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,18 +12,31 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  constructor(chatService:ChatSocketService, accountService: AccountSocketService) {
+    this.chatService=chatService;
+    this.accountService=accountService;
+   }
+
+  chatService:ChatSocketService;
+  accountService:AccountSocketService;
   channelList: Channel[] = [];
   tabSelected:number = 0;
+  message : string = "";
 
   ngOnInit(): void {
-    this.channelList.push({name:"chat", messageHistory:[], userList:[]})
-    this.channelList.push({name:"chien", messageHistory:[], userList:[]})
-    for(var i:number =0; i < 20; i++){
-      this.channelList[0].messageHistory.push("message");
-      this.channelList[0].userList.push("user");
-    }
+    this.chatService.setMessageListener(this.receiveMesssage);
+    this.accountService.getBucketList(bucketList: {name : string, isDone: boolean}[])
+  }
 
+  getChannels()
+
+  receiveMesssage(message: string, username:string, bucketName: string):void 
+  {
+    let time = new Date;
+    for(let channel of this.channelList){
+      if(channel.name=bucketName)
+        channel.messageHistory.push(time.toUTCString()+username+message);
+    }
   }
 
   updateTab(index:number):void {
@@ -29,11 +44,26 @@ export class ChatComponent implements OnInit {
     console.log(this.tabSelected);
   }
 
+  sendMessage(message:string):void {
+    this.chatService.sendMessage(message, this.channelList[this.tabSelected].name, this.pushMessageToBoard);
+  }
+
+  pushMessageToBoard():void
+  {
+    let time = new Date;
+    this.channelList[this.tabSelected].messageHistory.push(time.toUTCString+this.message);
+    this.message="";
+  }
+
 }
 
 interface Channel{
   name :string
-  messageHistory: string[];
+  messageHistory: string[]
   userList: string[]
 }
 
+interface BucketList{
+  name:string
+  isDone:boolean
+}
